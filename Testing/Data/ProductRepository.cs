@@ -23,4 +23,10 @@ public class ProductRepository : IProductRepository
     {
         return _conn.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE PRODUCTID = @ID;", new { ID = id }); 
     }
+
+    public void UpdateProduct(Product product) // implement updateproduct
+    {
+        _conn.Execute("UPDATE products SET Name = @name. Price = @ price WHERE ProductId = @id",
+            new { name = product.Name, price = product.Price, id = product.ProductID });
+    }
 }

@@ -25,4 +25,22 @@ public class ProductController : Controller
         var product = repo.GetProduct(id);
         return View(product);
     }
+
+    public IActionResult UpdateProduct(int id) // add controller method for update product
+    {
+        Product prod = repo.GetProduct(id);
+
+        if (prod == null)
+        {
+            return View("ProductNotFound");
+        }
+
+        return View(prod);
+    }
+
+    public IActionResult UpdateProductToDatabase(Product product) //adding database update
+    {
+        repo.UpdateProduct(product);
+        return RedirectToAction("ViewProduct", new { id = product.ProductID });
+    }
 }
