@@ -1,0 +1,22 @@
+using Mysqlx.Crud;
+using Testing.Data;
+using Testing.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Testing.Controllers;
+
+public class ProductController : Controller
+{
+    private readonly IProductRepository repo;
+
+    public ProductController(IProductRepository repo)
+    {
+        this.repo = repo;
+    }
+
+    public IActionResult Index()
+    {
+        var products = repo.GetAllProducts();
+        return View(products);
+    }
+}
