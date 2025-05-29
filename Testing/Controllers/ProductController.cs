@@ -55,4 +55,10 @@ public class ProductController : Controller
         repo.InsertProduct(productToInsert);
         return RedirectToAction("Index");
     }
+
+    public IActionResult DeleteProduct(Product product) // this method triggers deletion process and redirects to the product list
+    {
+        repo.DeleteProduct(product);
+        return RedirectToAction("Index");
+    }
 }

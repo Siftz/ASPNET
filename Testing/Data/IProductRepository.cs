@@ -17,5 +17,7 @@ namespace Testing.Data
         public void InsertProduct(Product productToInsert);
         public IEnumerable<Category> GetCategories();
         public Product AssignCategory();
+        //adding stubbed out method for start of exercise 5
+        public void DeleteProduct(Product product);
     }
 }

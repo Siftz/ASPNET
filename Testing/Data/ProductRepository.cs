@@ -49,4 +49,12 @@ public class ProductRepository : IProductRepository
         product.Categories = categoryList;
         return product;
     }
+
+    public void DeleteProduct(Product product) //implement for delete for covering
+    {
+        _conn.Execute("DELETE FROM REVIEWS WHERE ProductID = @id;", new {id = product.ProductID });
+        _conn.Execute("DELETE FROM Sales WHERE ProductID = @id;",  new { id = product.ProductID });
+        _conn.Execute("DELETE FROM Products WHERE ProductID = @id;", new { id = product.ProductID });
+    }
+    
 }
