@@ -24,10 +24,14 @@ public class ProductRepository : IProductRepository
         return _conn.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE PRODUCTID = @ID;", new { ID = id }); 
     }
 
-    public void UpdateProduct(Product product) // implement updateproduct
+    public void UpdateProduct(Product product) // implement update product
     {
-        _conn.Execute("UPDATE products SET Name = @name. Price = @ price WHERE ProductId = @id",
+        _conn.Execute("UPDATE products SET Name = @name, Price = @price WHERE ProductID = @id",
             new { name = product.Name, price = product.Price, id = product.ProductID });
+        // found the error it was a '.' instead of a ',' after @name, and an extra space was added between @price,
+        // also corrected ProductId to ProductID
+        // re tested and this fixed the issue
+        
     }
 
     public void InsertProduct(Product productToInsert) //insert product
