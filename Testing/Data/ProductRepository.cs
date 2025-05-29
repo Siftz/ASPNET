@@ -29,4 +29,24 @@ public class ProductRepository : IProductRepository
         _conn.Execute("UPDATE products SET Name = @name. Price = @ price WHERE ProductId = @id",
             new { name = product.Name, price = product.Price, id = product.ProductID });
     }
+
+    public void InsertProduct(Product productToInsert) //insert product
+    {
+        _conn.Execute("INSERT INTO products (NAME, PRICE, CATEGORYID) VALUES (@name, @price, @categoryID);",
+            new {name = productToInsert.Name, price = productToInsert.Price, categoryID = productToInsert.CategoryID });
+    }
+
+    public IEnumerable<Category> GetCategories() //get category
+    {
+            return _conn.Query<Category>("SELECT * FROM categories;");
+    }
+    
+
+    public Product AssignCategory() //assign category
+    {
+        var categoryList = GetCategories();
+        var product = new Product();
+        product.Categories = categoryList;
+        return product;
+    }
 }

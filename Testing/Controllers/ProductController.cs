@@ -43,4 +43,16 @@ public class ProductController : Controller
         repo.UpdateProduct(product);
         return RedirectToAction("ViewProduct", new { id = product.ProductID });
     }
+    //exercise 4 added method for product insert
+    public IActionResult InsertProduct()
+    {
+        var prod = repo.AssignCategory();
+        return View(prod);
+    }
+
+    public IActionResult InsertProductToDatabase(Product productToInsert) // adds to database
+    {
+        repo.InsertProduct(productToInsert);
+        return RedirectToAction("Index");
+    }
 }
